@@ -28,6 +28,7 @@ public class URLThread implements Callable {
     public URLThread(String URL){
         this.urlString = URL;
         this.conn = null;
+        people = new ArrayList<>();
     }
 
 
@@ -39,7 +40,7 @@ public class URLThread implements Callable {
             conn = (HttpURLConnection) url.openConnection();
             conn.connect();
             isConectionOkay();
-            InputStream inputStream = conn.getInputStream();
+            //InputStream inputStream = conn.getInputStream();
             String data = IOUtils.toString(conn.getInputStream(), StandardCharsets.UTF_8);
             makeObjects(data);
 
@@ -52,7 +53,7 @@ public class URLThread implements Callable {
     }
 
     public void makeObjects(String data) {
-        people = new ArrayList<>();
+
         try {
             JSONArray job = new JSONArray(data);
             for(int x = 0; x < job.length(); x++){
