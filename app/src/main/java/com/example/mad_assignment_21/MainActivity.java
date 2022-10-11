@@ -1,7 +1,9 @@
 package com.example.mad_assignment_21;
 
 import android.support.v4.app.FragmentManager;
-import   android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity;
+//import androidx.fragment.app.Fragment;
+//import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -15,8 +17,10 @@ import java.util.concurrent.Future;
 public class MainActivity extends AppCompatActivity {
 
     private final String urlString = "https://jsonplaceholder.typicode.com/users";
+    private final String commentURL = "https://jsonplaceholder.typicode.com/posts";
     ExecutorService executorService = Executors.newSingleThreadExecutor();
     List<Person> people;
+    List<Comments> comments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
         URLThread urlThread = new URLThread(urlString);
         Future<List<Person>> searchResponsePlaceHolder = executorService.submit(urlThread);
-        //List<Person> people = waitingForSearch(searchResponsePlaceHolder);
         try {
             people = searchResponsePlaceHolder.get();
             int x = people.size();
@@ -34,6 +37,21 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        CommentThread commentThread = new CommentThread(commentURL);
+        Future<List<Comments>> placeHolder = executorService.submit(commentThread);
+        try {
+            comments = placeHolder.get();
+            int x = comments.size();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        // below needs to be changed....
         if(people != null ) {
 
             setContentView(R.layout.activity_main);

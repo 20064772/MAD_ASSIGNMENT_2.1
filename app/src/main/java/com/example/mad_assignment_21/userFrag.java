@@ -21,8 +21,6 @@ public class userFrag extends Fragment {
         // Required empty public constructor
     }
 
-
-
     public static userFrag newInstance(String param1, String param2) {
         userFrag fragment = new userFrag();
         Bundle args = new Bundle();
@@ -33,6 +31,7 @@ public class userFrag extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Override
@@ -40,7 +39,7 @@ public class userFrag extends Fragment {
         View v = inflater.inflate(R.layout.fragment_user, container, false);
         RecyclerView rv = v.findViewById(R.id.userView);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        UserAdaptor userAdaptor = new UserAdaptor();
+        UserAdaptor userAdaptor = new UserAdaptor(people);
         rv.setAdapter(userAdaptor);
         return  v;
     }
