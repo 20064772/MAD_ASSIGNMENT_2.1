@@ -1,5 +1,6 @@
 package com.example.mad_assignment_21;
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,8 @@ public class userFrag extends Fragment {
 
 
     List<Person> people;
+    List<Comments> comments;
+    SharedViewModel viewModel;
 
     public userFrag() {
         // Required empty public constructor
@@ -30,8 +33,11 @@ public class userFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
+        viewModel = new ViewModelProvider(getActivity(), new ViewModelProvider.NewInstanceFactory()).get(SharedViewModel.class);
+        people = (List<Person>)getArguments().getSerializable("people");
+        comments = (List<Comments>)getArguments().getSerializable("comments");
+        viewModel.setComments(comments);
+        viewModel.setPeople(people);
     }
 
     @Override
@@ -39,7 +45,7 @@ public class userFrag extends Fragment {
         View v = inflater.inflate(R.layout.fragment_user, container, false);
         RecyclerView rv = v.findViewById(R.id.userView);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        UserAdaptor userAdaptor = new UserAdaptor(people);
+        UserAdaptor userAdaptor = new UserAdaptor(people, viewModel);
         rv.setAdapter(userAdaptor);
         return  v;
     }

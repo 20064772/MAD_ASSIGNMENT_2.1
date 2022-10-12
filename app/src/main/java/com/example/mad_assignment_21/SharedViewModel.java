@@ -7,6 +7,34 @@ import java.util.List;
 
 public class SharedViewModel extends ViewModel {
 
-    List<Person> people;
-    List<Comments> comments;
+    private List<Person> people;
+    private List<Comments> comments;
+    private int position;
+
+    public SharedViewModel(){
+    }
+
+    public void setPeople(List<Person> people) {
+        this.people = people;
+    }
+
+    public void setComments(List<Comments> comments){
+        this.comments = comments;
+    }
+
+    public List<Person> getPeople(){
+        return people;
+    }
+
+    public List<Comments> getComments() {
+        return comments;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public int getPosition() {
+        return position;
+    }
 }

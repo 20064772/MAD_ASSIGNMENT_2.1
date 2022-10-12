@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     ExecutorService executorService = Executors.newSingleThreadExecutor();
     List<Person> people;
     List<Comments> comments;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+
+
         CommentThread commentThread = new CommentThread(commentURL);
         Future<List<Comments>> placeHolder = executorService.submit(commentThread);
         try {
@@ -48,9 +52,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-
-
+        executorService.shutdownNow();
         // below needs to be changed....
         if(people != null ) {
 
@@ -61,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 user =  new userFrag();
                 Bundle b = new Bundle();
                 b.putSerializable("people", (Serializable) people);
+                b.putSerializable("comments", (Serializable) comments);
+                user.setArguments(b);
                 fm.beginTransaction().add(R.id.mainFrag, user).commit();
             }
         }
@@ -68,9 +72,15 @@ public class MainActivity extends AppCompatActivity {
 
             Toast toast=Toast.makeText(getApplicationContext(),"Waiting on other thread",Toast.LENGTH_SHORT);
         }
+        //executorService.shutdown();
+    }
+
+    public List<Person> getPersonData(Future<List<Person>> Fperson){
+        List<Person> peopleBack;
+        peopleBack = new ArrayList<Person>();
 
 
 
-
+        return peopleBack;
     }
 }

@@ -13,9 +13,11 @@ import java.util.List;
 public class UserAdaptor extends RecyclerView.Adapter<UserViewHolder> {
 
     List<Person> people;
+    SharedViewModel viewModel;
 
-    public UserAdaptor(List<Person> people){
+    public UserAdaptor(List<Person> people, SharedViewModel viewModel){
         this.people = people;
+        this.viewModel = viewModel;
     }
 
     @NonNull
@@ -25,14 +27,19 @@ public class UserAdaptor extends RecyclerView.Adapter<UserViewHolder> {
         View v  = layoutInflater.inflate(R.layout.user_item, parent, false);
         UserViewHolder userViewHolder = new UserViewHolder(v);
         return userViewHolder;
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
 
         holder.username.setText(people.get(position).getUserName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+
+            }
+        });
 
 
     }
