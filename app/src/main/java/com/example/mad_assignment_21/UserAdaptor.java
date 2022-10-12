@@ -1,13 +1,16 @@
 package com.example.mad_assignment_21;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 //import androidx.appcompat.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 
+import java.io.InputStreamReader;
 import java.util.List;
 
 public class UserAdaptor extends RecyclerView.Adapter<UserViewHolder> {
@@ -36,12 +39,12 @@ public class UserAdaptor extends RecyclerView.Adapter<UserViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
+                viewModel.setPosition(people.get(holder.getAdapterPosition()).getId());
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                Display display = new Display();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFrag, display).addToBackStack(null).commit();
             }
         });
-
-
     }
 
 

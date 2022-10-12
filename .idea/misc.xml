@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Downloads/MAD_assignment_21/app/src/main/res/layout/activity_main.xml" value="0.4316123188405797" />
+        <entry key="..\:/Downloads/MAD_assignment_21/app/src/main/res/layout/comment_item.xml" value="0.2662107396149949" />
+        <entry key="..\:/Downloads/MAD_assignment_21/app/src/main/res/layout/fragment_comment.xml" value="0.2130841121495327" />
+        <entry key="..\:/Downloads/MAD_assignment_21/app/src/main/res/layout/fragment_display.xml" value="0.45729166666666665" />
+        <entry key="..\:/Downloads/MAD_assignment_21/app/src/main/res/layout/fragment_user.xml" value="0.25" />
         <entry key="..\:/Downloads/MAD_assignment_21/app/src/main/res/layout/user_item.xml" value="0.1425925925925926" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18854166666666666" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.18854166666666666" />

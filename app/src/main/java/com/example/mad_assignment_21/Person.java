@@ -55,6 +55,8 @@ public class Person {
         return address.getCity();
     }
 
+    public String getZip(){ return address.getZipcode();}
+
     public String getLat() {
         return address.getLat();
     }
